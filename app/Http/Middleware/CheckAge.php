@@ -15,6 +15,33 @@ class CheckAge
      */
     public function handle($request, Closure $next)
     {
+
+        if ($request->age <= 200) {
+            return redirect('home');
+        }
+
         return $next($request);
+    }
+}
+
+class BeforeMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        // Perform action
+
+        return $next($request);
+    }
+}
+
+class AfterMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        $response = $next($request);
+
+        // Perform action
+
+        return $response;
     }
 }
