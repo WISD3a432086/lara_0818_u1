@@ -11,12 +11,32 @@
 |
 */
 
+use App\Http\Middleware\CheckAge;
+
+//Route::get('/', function () {
+    //
+//})->middleware('first', 'second');
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    //
+})->middleware(CheckAge::class);
+
+    //return view('welcome');
+//});
 
 Route::get('/tracy', function () {
     throw new \Exception('Tracyworks!');
 });
 
+Route::get('admin/profile', function () {
+    //
+})->middleware(CheckAge::class);
 
+
+Route::auth();
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
